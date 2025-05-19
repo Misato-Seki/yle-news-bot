@@ -1,0 +1,24 @@
+blank_issues_enabled: false
+contact_links: []
+
+issue_templates:
+  - name: Feature Request
+    description: Suggest a new feature or improvement.
+    title: "[Feature] "
+    labels: [enhancement]
+    assignees: []
+    file: feature_request.md
+
+  - name: Bug Report
+    description: Report a problem or unexpected behavior.
+    title: "[Bug] "
+    labels: [bug]
+    assignees: []
+    file: bug_report.md
+
+  - name: Development Task
+    description: Track a development task or technical improvement.
+    title: "[Task] "
+    labels: [task]
+    assignees: []
+    file: task.md
