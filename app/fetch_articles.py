@@ -30,7 +30,8 @@ def fetch_articles():
             articles.append({
                 "title": title,
                 "url": url,
-                "date": date
+                "date": date,
+                "summary": None,  # Placeholder for summary
             })
         
     return articles
