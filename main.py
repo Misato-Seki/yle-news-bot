@@ -17,11 +17,6 @@ async def main():
     """
     articles = fetch_articles()
     for article in articles:
-        print(f"Title: {article['title']}")
-        print(f"URL: {article['url']}")
-        print(f"Date: {article['date']}")
-        print("-" * 40)
-
         # Extract article text
         text = extract_article_text(article['url'])
         if not text:
@@ -30,17 +25,20 @@ async def main():
 
         # Summarize the article
         summary = summarize_text(text)
-        # print("Summary:")
-        # print(summary)
-        # print("=" * 80)
-        # print("\n" * 1)
+        article['summary'] = summary
 
-        # Send summary to Discord
-        message = format_summary(article, summary)
-        await send_summary_message(message)
+        # Print the article title and summary
+        print(f"Title: {article['title']}")
+        print(f"URL: {article['url']}")
+        print(f"Date: {article['date']}")
+        print(f"Summary: {article['summary']}")
+        print("-" * 40)
 
-if __name__ == "__main__":
-    
+    # Send summary to Discord
+    message = format_summary(articles)
+    await send_summary_message(message)
+
+if __name__ == "__main__":    
     async def run_bot():
         """
         Logins to Discord and connects to the gateway, then runs the bot until stopped.
