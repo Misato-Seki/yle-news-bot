@@ -2,7 +2,7 @@ from app.fetch_articles import fetch_articles
 from app.extract_article_text import extract_article_text
 from app.summarizer import summarize_text
 from app.bot import TOKEN, send_summary_message, client
-from app.html_generator import generate_html, save_html
+from app.html_generator import generate_html, save_html, cleanup_old_html
 import asyncio
 
 async def main():
@@ -30,19 +30,17 @@ async def main():
 
         # Print the article title and summary
         print(f"Title: {article['title']}")
-        # print(f"URL: {article['url']}")
-        # print(f"Date: {article['date']}")
-        # print(f"Summary: {article['summary']}")
         print("-" * 40)
 
     # Generate HTML file
     html = generate_html(articles)
     save_html(html)
 
+    # Cleanup old HTML files
+    cleanup_old_html()
+
     # Send summary to Discord
     await send_summary_message()
-    # message = format_summary(articles)
-    # await send_summary_message(message)
 
 if __name__ == "__main__":    
     async def run_bot():
