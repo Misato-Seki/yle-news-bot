@@ -5,6 +5,7 @@ from utils.date_utils import is_yesterday
 BASE_URL = "https://yle.fi/news/tuoreimmat"
 
 def fetch_articles():
+    print("Fetching articles from YLE...")
     response = requests.get(BASE_URL)
     response.raise_for_status()
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -14,6 +15,7 @@ def fetch_articles():
     for h3 in soup.find_all("h3"):
         a_tag = h3.find("a", href=True)
         if not a_tag:
+            print("skip h3 because no <a>")
             continue
 
         title = a_tag.get_text(strip=True)
@@ -21,6 +23,7 @@ def fetch_articles():
 
         time_tag = h3.find_next("time")
         if not time_tag:
+            print("skip h3 because no <time> nearby")
             continue
 
         date_time = time_tag["datetime"]
