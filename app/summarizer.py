@@ -14,7 +14,7 @@ def summarize_text(text):
         str: The summarized text.
     """
     inputs = tokenizer(text, return_tensors="pt", max_length=1024, truncation=True)
-    truncated_text = tokenizer.decode(inputs[0], skip_special_tokens=True)
+    truncated_text = tokenizer.decode(inputs["input_ids"][0], skip_special_tokens=True)
 
     summary = summarizer(truncated_text, max_length=120, min_length=80, do_sample=False)
     return summary[0]['summary_text']
