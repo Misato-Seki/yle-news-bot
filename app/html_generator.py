@@ -34,6 +34,8 @@ def save_html(html):
     format 'YYYY-MM-DD.html', where 'YYYY-MM-DD' is yesterday's date.
     """
 
+    os.makedirs('summaries', exist_ok=True)  # Create the directory if it doesn't exist
+
     yesterday = (datetime.datetime.now() - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
     filename = f"summaries/{yesterday}.html"
     with open(filename, 'w', encoding="utf-8") as f:
