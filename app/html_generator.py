@@ -13,12 +13,29 @@ def generate_html(articles):
         str: The HTML content.
     """
     yesterday = (datetime.datetime.now() - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
-    html = '<html><body style="font-family: Arial, sans-serif; padding: 20px;"><h1 style="font-size: 36px;">Summary of news for ' + yesterday + '</h1>'
+    html = '''
+    <html>
+    <head>
+    <style>
+      body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { font-size: 48px; }
+        h2 { font-size: 36px; }
+        p { font-size: 24px; }
+      @media (max-width: 600px) {
+        h1 { font-size: 36px; }
+        h2 { font-size: 30px; }
+        p { font-size: 24px; }
+      }
+    </style>
+    </head>
+    <body>
+      <h1>Summary of news for ''' + yesterday + '''</h1>
+    '''
     for article in articles:
-        html += f'<h2 style="font-size: 24px;">{article["title"]}</h2>'
-        html += f'<p style="font-size: 18px;"><a href="{article["url"]}">{article["url"]}</a></p>'
-        html += f'<p style="font-size: 18px;">{article["date"]}</p>'
-        html += f'<p style="font-size: 18px;">{article["summary"]}</p>'
+        html += f'<h2>{article["title"]}</h2>'
+        html += f'<p><a href="{article["url"]}">{article["url"]}</a></p>'
+        html += f'<p>{article["date"]}</p>'
+        html += f'<p>{article["summary"]}</p>'
         html += '<hr>'
     html += '</body></html>'
     return html
