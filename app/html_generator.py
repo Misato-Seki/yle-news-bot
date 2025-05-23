@@ -13,12 +13,12 @@ def generate_html(articles):
         str: The HTML content.
     """
     yesterday = (datetime.datetime.now() - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
-    html = '<html><body><h1>Summary of news for ' + yesterday + '</h1>'
+    html = '<html><body style="font-family: Arial, sans-serif; padding: 20px;"><h1 style="font-size: 36px;">Summary of news for ' + yesterday + '</h1>'
     for article in articles:
-        html += f'<h2>{article["title"]}</h2>'
-        html += f'<p><a href="{article["url"]}">{article["url"]}</a></p>'
-        html += f'<p>{article["date"]}</p>'
-        html += f'<p>{article["summary"]}</p>'
+        html += f'<h2 style="font-size: 24px;">{article["title"]}</h2>'
+        html += f'<p style="font-size: 18px;"><a href="{article["url"]}">{article["url"]}</a></p>'
+        html += f'<p style="font-size: 18px;">{article["date"]}</p>'
+        html += f'<p style="font-size: 18px;">{article["summary"]}</p>'
         html += '<hr>'
     html += '</body></html>'
     return html
@@ -58,3 +58,23 @@ def cleanup_old_html(days_to_keep=7):
                     print(f"Deleted old file: {file}")
             except Exception:
                 pass
+
+if __name__ == "__main__":
+    # Example usage
+    articles = [
+        {
+            "title": "Example Article 1",
+            "url": "http://example.com/article1",
+            "date": "2023-10-01",
+            "summary": "This is a summary of article 1."
+        },
+        {
+            "title": "Example Article 2",
+            "url": "http://example.com/article2",
+            "date": "2023-10-02",
+            "summary": "This is a summary of article 2."
+        }
+    ]
+
+    html_content = generate_html(articles)
+    save_html(html_content)
