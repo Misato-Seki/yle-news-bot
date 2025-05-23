@@ -16,6 +16,6 @@ async def send_summary_message():
 
     channel = client.get_channel(CHANNEL_ID)
     if channel:
-        yesterday = datetime.datetime.now() - datetime.timedelta(days=1)
-        await channel.send(f"Here is the summary of YLE news for {yesterday}: http://localhost:5001/")
+        yesterday = (datetime.datetime.now() - datetime.timedelta(days=1))
+        await channel.send(f"Here is the summary of YLE news for {yesterday.strftime("%m/%d")}: https://misato-seki.github.io/yle-news-bot/{yesterday.strftime("%Y-%m-%d")}.html")
     await client.close()

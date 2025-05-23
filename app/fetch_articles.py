@@ -15,7 +15,6 @@ def fetch_articles():
     for h3 in soup.find_all("h3"):
         a_tag = h3.find("a", href=True)
         if not a_tag:
-            print("skip h3 because no <a>")
             continue
 
         title = a_tag.get_text(strip=True)
@@ -23,7 +22,6 @@ def fetch_articles():
 
         time_tag = h3.find_next("time")
         if not time_tag:
-            print("skip h3 because no <time> nearby")
             continue
 
         date_time = time_tag["datetime"]
