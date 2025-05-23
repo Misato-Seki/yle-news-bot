@@ -16,16 +16,12 @@ def generate_html(articles):
     html = '''
     <html>
     <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
       body { font-family: Arial, sans-serif; padding: 20px; }
-        h1 { font-size: 48px; }
-        h2 { font-size: 36px; }
-        p { font-size: 24px; }
-      @media (max-width: 600px) {
-        h1 { font-size: 36px; }
-        h2 { font-size: 30px; }
-        p { font-size: 24px; }
-      }
+        h1 { font-size: xx-large; }
+        h2 { font-size: larger; }
+        p { font-size: medium; }
     </style>
     </head>
     <body>
