@@ -24,6 +24,9 @@ jobs:
                   pip install -r requirements.txt
 
             - name: Generate HTML
+              env:
+                  DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID }}
+                  DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
               run: |
                   python main.py
 
