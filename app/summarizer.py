@@ -1,9 +1,22 @@
-from transformers import pipeline
+from transformers import pipeline, AutoTokenizer
 
+tokenizer = AutoTokenizer.from_pretrained("facebook/bart-large-cnn")
 summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 
-def summarize_text(text):
-    summary = summarizer(text, max_length=120, min_length=80, do_sample=False, truncation=True)
+def summarize_text(text):   
+    """
+    Summarizes the given text using the BART model.
+
+    Args:
+        text (str): The text to summarize.
+
+    Returns:
+        str: The summarized text.
+    """
+    inputs = tokenizer(text, return_tensors="pt", max_length=1024, truncation=True)
+    truncated_text = tokenizer.decode(inputs[0], skip_special_tokens=True)
+
+    summary = summarizer(truncated_text, max_length=120, min_length=80, do_sample=False)
     return summary[0]['summary_text']
 
 if __name__ == "__main__":
