@@ -5,6 +5,9 @@ on:
         - cron: '0 5 * * *'  # Runs every day at 05:00 UTC (07:00 Finland time)
     workflow_dispatch:  # Allows manual triggering of the workflow
 
+permissions:
+    contents: write
+
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
