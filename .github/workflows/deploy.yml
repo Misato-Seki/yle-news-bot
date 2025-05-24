@@ -2,7 +2,7 @@ name: Generate and Deploy HTML to GitHub Pages
 
 on:
     schedule:
-        - cron: '0 5 * * *'  # Runs every day at 05:00 UTC (07:00 Finland time)
+        - cron: '0 0 * * *'  # Runs every day at 00:00 UTC
     workflow_dispatch:  # Allows manual triggering of the workflow
 
 permissions:
