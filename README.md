@@ -47,7 +47,20 @@
    ```sh
    python main.py
    ```
+4. Using Docker
 
+Build the Docker image:
+```shell
+docker build -t yle-news-bot .
+```
+Run the container:
+```shell
+docker run --rm \
+  -e DISCORD_BOT_TOKEN=your_discord_bot_token \
+  -e DISCORD_CHANNEL_ID=your_channel_id \
+  -v $(pwd)/summaries:/app/summaries \
+  yle-news-bot
+```
    *Make sure your Discord bot is enabled and invited to the target channel.*
 
 ## Testing
